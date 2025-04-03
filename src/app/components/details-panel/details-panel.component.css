@@ -79,23 +79,104 @@
   }
 
   
-/* ======================== */
-/* details-panel.component.css */
-/* ======================== */
-@media (max-width: 1024px) {
+/* ------------------------------ */
+/* Mobile Overrides for Details Panel */
+/* ------------------------------ */
+@media only screen and (max-width: 768px) {
+  /* Reduce the overall container height for mobile */
+  .details-container {
+    max-height: 50dvh; /* Adjust so that about 2 panels are visible */
+  }
+
+  /* Adjust scrollable content: reduce padding and maximum height */
+  .scrollable-content {
+    padding: 8px 0;
+    max-height: 120px; /* Adjust based on your panel header heights */
+  }
+
+  /* Reduce panel header height and horizontal padding */
   .output-accordion .mat-expansion-panel-header {
-    height: 56px;
+    height: 48px;
     padding: 0 16px;
   }
-}
 
-@media (max-width: 768px) {
+  /* Decrease font sizes for panel titles and content paragraphs */
   .output-accordion .mat-panel-title {
     font-size: 14px;
   }
-  
-  .output-accordion p {
+
+  .output-accordion .mat-expansion-panel-content p {
     font-size: 14px;
-    margin: 12px 16px;
+    margin: 8px 16px;
+  }
+
+  /* Optionally, adjust scrollbar sizes for mobile */
+  .scrollable-content::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+  
+
+/* For screens ≤ 600px */
+@media only screen and (max-width: 600px) {
+  /* .details-container {
+    max-height: 45dvh;
+  } */
+  .scrollable-content {
+    padding: 6px 0;
+    /* max-height: 120px; */
+  }
+  .output-accordion .mat-expansion-panel-header {
+    height: 42px;
+    padding: 0 12px;
+  }
+}
+
+
+/* For screens ≤ 600px */
+@media only screen and (max-width: 600px) {
+  .details-container {
+    max-height: 45dvh;
+  }
+  .scrollable-content {
+    padding: 6px 0;
+    max-height: 100px;
+  }
+  .output-accordion .mat-expansion-panel-header {
+    height: 42px;
+    padding: 0 12px;
+  }
+  .output-accordion .mat-panel-title {
+    font-size: 13px;
+  }
+  .output-accordion .mat-expansion-panel-content p {
+    font-size: 13px;
+    margin: 6px 12px;
+  }
+  .scrollable-content::-webkit-scrollbar {
+    width: 3px;
+  }
+}
+
+/* For screens ≤ 480px */
+@media only screen and (max-width: 480px) {
+  /* .details-container {
+    max-height: 100%;
+  } */
+  .scrollable-content {
+    padding: 4px 8px;
+    max-height: 20vh;
+    max-width: 80%;
+  }
+  .output-accordion .mat-expansion-panel-header {
+    height: 36px;
+    padding: 0 8px;
+  }
+  .output-accordion .mat-panel-title {
+    font-size: 12px;
+  }
+  .output-accordion .mat-expansion-panel-content p {
+    font-size: 12px;
+    margin: 4px 8px;
   }
 }

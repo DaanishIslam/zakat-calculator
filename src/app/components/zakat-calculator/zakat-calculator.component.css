@@ -133,29 +133,110 @@
   background: rgba(254, 254, 254, 0.1);
 }
 
+/* media query */
 
-/* ======================== */
-/* zakat-calculator.component.css */
-/* ======================== */
-@media (max-width: 1024px) {
+/* Mobile styles: stack containers vertically */
+@media only screen and (max-width: 768px) {
   .zakat-container {
     flex-direction: column;
-    gap: 1rem;
+    max-height: 90vh;
+    max-width: calc(800px - 10%);
   }
-  
-  .form-container,
+  .custom-stepper{
+    height: 60vh;
+  }
+  .form-container {
+    max-height: 55vh; 
+    max-width: 40vh;
+  }
   .output-container {
-    min-width: 100%;
-    height: auto;
+    max-height: 35vh; 
+    max-width: 40vh;
+
+  }
+  .important-notes-header{
+    height: 2.5rem;
+    padding: 2px;
+  }
+  .important-notes-header h2{
+    
+    display: flex;
+    font-size: 1rem;
+    justify-content: center;
+  }
+  .important-notes-header p{
+    display: flex;
+    font-size: 0.8rem;
+  margin: 2px;
+    justify-content: center;
   }
 }
 
-@media (max-width: 768px) {
-  .custom-stepper {
-    padding: 0.5rem;
+
+/* Further adjustments for screens ≤ 600px */
+@media only screen and (max-width: 600px) {
+  .zakat-container {
+    max-height: 90vh;
+    max-width: calc(800px - 20%);
+
   }
-  
-  ::ng-deep .mat-step-header {
-    padding: 0 8px;
+  .custom-stepper {
+    height: 55vh;
+  }
+  .form-container {
+    max-height: 50vh;
+    max-width: 35vh;
+
+
+  }
+  .output-container {
+    max-width: 35vh;
+
+  }
+  .important-notes-header {
+    height: 2rem;
+    padding: 1.5px;
+  }
+  .important-notes-header h2 {
+    font-size: 0.9rem;
+  }
+  .important-notes-header p {
+    font-size: 0.75rem;
   }
 }
+
+
+/* Further adjustments for screens ≤ 600px */
+@media only screen and (max-width: 486px) {
+  .zakat-container {
+    max-height: 90vh;
+    max-width: 90%
+
+  }
+  .custom-stepper {
+    height: 55vh;
+    width: 80%;
+  }
+  .form-container {
+    max-height: 50vh;
+    max-width: 25vh;
+
+
+  }
+  .output-container {
+    max-width: 25vh;
+
+  }
+  .important-notes-header {
+    height: 2rem;
+    padding: 1.5px;
+    max-width: 80%;
+  }
+  .important-notes-header h2 {
+    font-size: 0.9rem;
+  }
+  .important-notes-header p {
+    font-size: 0.75rem;
+  }
+}
+

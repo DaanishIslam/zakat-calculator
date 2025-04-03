@@ -150,7 +150,7 @@
 /* ======================== */
 /* Form Steps (1-8)         */
 /* ======================== */
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .gold-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -174,18 +174,167 @@
   .submit-button {
     width: 100%;
   }
-}
+} */
 
 
 /* ======================== */
 /* Stepper Header Scroll    */
 /* ======================== */
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   ::ng-deep .mat-horizontal-stepper-header-container {
     padding: 2px 0 0 0;
   }
   
   ::ng-deep .mat-step-header {
     padding: 0 12px;
+  }
+} */
+
+/* Global Stepper CSS (Desktop settings remain unchanged) */
+/* ... existing desktop styles ... */
+
+/* ------------------------------ */
+/* Mobile Overrides for Stepper   */
+/* ------------------------------ */
+@media only screen and (max-width: 768px) {
+  /* Adjust the overall step content area */
+  .step-content {
+    margin: 4px;
+    /* padding: 4px; */
+    max-height: 40vh; /* Reduce height for mobile */
+  }
+  
+  /* Section header: scale down spacing and font-size */
+  .section-header {
+    margin: 12px 0 4px;
+    font-size: 1rem;
+    padding-bottom: 2px;
+  }
+  
+  /* For form rows, reduce gap and margin */
+  .form-row {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  
+  /* Change gold-grid to a single column on mobile */
+  .gold-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  
+  /* Allow input and select fields to use full width on mobile */
+  .input-field,
+  .select-field {
+    min-width: auto;
+  }
+  
+  .mat-form-field {
+    max-width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  /* Stack buttons vertically and allow full width */
+  .button-row {
+    flex-direction: row;
+    gap: 8px;
+    padding: 8px 0;
+  }
+  
+  .back-button,
+  .next-button,
+  .submit-button {
+    width: 40%;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  /* Optionally, you might adjust the stepper header container as well */
+  ::ng-deep .mat-horizontal-stepper-header-container {
+    padding: 4px 4px 0 0;
+  }
+}
+
+
+/* For screens ≤ 600px */
+@media only screen and (max-width: 600px) {
+  .step-content {
+    margin: 2px;
+    max-height: 35vh;
+  }
+  .section-header {
+    margin: 10px 0 4px;
+    font-size: 0.95rem;
+    padding-bottom: 2px;
+  }
+  .form-row {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .gold-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .mat-form-field {
+    max-width: 100%;
+    margin-bottom: 6px;
+  }
+  .button-row {
+    flex-direction: column;
+    gap: 6px;
+    padding: 6px 0;
+  }
+  .back-button,
+  .next-button,
+  .submit-button {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  ::ng-deep .mat-horizontal-stepper-header-container {
+    padding: 2px 2px 0 0;
+  }
+}
+
+/* For screens ≤ 480px */
+@media only screen and (max-width: 480px) {
+  .step-content {
+    margin: 2px;
+    max-height: 30vh;
+  }
+  .section-header {
+    margin: 8px 0 2px;
+    font-size: 0.9rem;
+    padding-bottom: 2px;
+  }
+  .form-row {
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .gold-grid {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .mat-form-field {
+    max-width: 100%;
+    margin-bottom: 4px;
+  }
+  .button-row {
+    flex-direction: row;
+    gap: 4px;
+    padding: 4px 0;
+  }
+  .back-button,
+  .next-button,
+  .submit-button {
+    /* width: 100%; */
+    padding: 6px;
+    font-size: 0.85rem;
+  }
+  ::ng-deep .mat-horizontal-stepper-header-container {
+    padding: 2px 2px 0 0;
   }
 }
