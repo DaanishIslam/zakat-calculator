@@ -1,0 +1,68 @@
+<!-- src\app\form-steps\stepper-3\stepper-3.component.html -->
+<div class="step-content">
+    <div class="section-header">Investments: MF, Stocks, Bonds</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Enter Gross Total</mat-label>
+        <input matInput type="number" placeholder="Enter Value" [(ngModel)]="formData.investmentsGross"
+          name="investmentsGross" 
+          (focus)="openLoansAndInvestmentPanel()">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field select-field">
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="formData.investmentCurrency" name="investmentCurrency">
+          @for (code of currencies; track code) {
+            <mat-option [value]="code">{{ code }}</mat-option>
+          } @empty {
+            <mat-option disabled>No currencies available</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="section-header">Investments: PPF, Insurances, Business Stocks</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Enter Gross Total</mat-label>
+        <input matInput type="number" placeholder="Enter Value" [(ngModel)]="formData.ppfGross" name="ppfGross"
+           (focus)="openLoansAndInvestmentPanel()">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field select-field">
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="formData.ppfCurrency" name="ppfCurrency">
+          @for (code of currencies; track code) {
+            <mat-option [value]="code">{{ code }}</mat-option>
+          } @empty {
+            <mat-option disabled>No currencies available</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="section-header">Investments: Digital Wallet, Cryptos</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Enter Gross Total</mat-label>
+        <input matInput type="number" placeholder="Enter Value" [(ngModel)]="formData.cryptoGross"
+          name="cryptoGross"  (focus)="openLoansAndInvestmentPanel()">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field select-field">
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="formData.cryptoCurrency" name="cryptoCurrency">
+          @for (code of currencies; track code) {
+            <mat-option [value]="code">{{ code }}</mat-option>
+          } @empty {
+            <mat-option disabled>No currencies available</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="button-row">
+        <button mat-raised-button color="primary" class="back-button" (click)="previousStep()">Back</button>
+        <button mat-raised-button color="primary" class="next-button" (click)="nextStep()">Next</button>
+      </div>
+  </div>

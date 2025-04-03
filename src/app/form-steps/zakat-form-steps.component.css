@@ -1,0 +1,191 @@
+/* src\app\form-steps\zakat-form-steps.component.css */
+
+/* new styles */
+/* ------------------------------ */
+/* Unified Background for Stepper */
+/* ------------------------------ */
+
+/* ------------------------------ */
+/* Step Content Base Style        */
+/* ------------------------------ */
+.step-content {
+  margin-top: 0.3rem;
+  max-height: 68dvh;
+  overflow-y: auto;
+  padding: 12px;
+  /* Removed background color */
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ------------------------------ */
+/* Section Headers                */
+/* ------------------------------ */
+.section-header {
+  font-weight: bold;
+  margin: 16px 0 8px;
+  font-size: 1.1rem;
+  /* Removed color and border-bottom color */
+  border-bottom: 1px solid;
+  padding-bottom: 4px;
+}
+
+/* ------------------------------ */
+/* Layout for Form Rows & Grids   */
+/* ------------------------------ */
+.form-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.gold-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+/* ------------------------------ */
+/* Input & Select Field Styling   */
+/* ------------------------------ */
+.input-field,
+.select-field {
+  flex: 1;
+  min-width: 250px;
+}
+
+.mat-form-field {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 12px;
+}
+
+/* ------------------------------ */
+/* Button Row & Buttons           */
+/* ------------------------------ */
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+.back-button,
+.next-button,
+.submit-button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-button {
+  width: 90px;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+.back-button:hover {
+  /* Removed background-color change */
+  transform: scale(1.05);
+}
+
+.next-button {
+  width: 150px;
+  padding: 12px;
+  font-size: 1rem;
+}
+
+.next-button:hover {
+  /* Removed background-color change */
+  transform: scale(1.05);
+}
+
+.submit-button {
+  width: 150px;
+  padding: 12px;
+  font-size: 1.2rem;
+}
+
+.submit-button:hover {
+  /* Removed background-color change */
+  transform: scale(1.05);
+}
+
+/* ------------------------------ */
+/* Override Angular Material Stepper Headers */
+/* ------------------------------ */
+::ng-deep .mat-horizontal-stepper-header-container {
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  /* Removed background and color properties */
+  background: none;
+  padding: 2px 2px 0 0;
+  border-radius: 8px;
+  /* Removed scrollbar-color override */
+}
+
+::ng-deep .mat-horizontal-stepper-header-container::-webkit-scrollbar {
+  height: 2px;
+}
+
+::ng-deep .mat-horizontal-stepper-header-container::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 2px;
+}
+
+::ng-deep .mat-step-header {
+  flex: 0 0 auto !important;
+  padding: 0 16px;
+}
+
+/* ------------------------------ */
+/* Additional Structural Overrides */
+/* ------------------------------ */
+/* Add any additional structural rules as needed */
+
+
+/* ======================== */
+/* Form Steps (1-8)         */
+/* ======================== */
+@media (max-width: 1024px) {
+  .gold-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .gold-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .button-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .next-button,
+  .submit-button {
+    width: 100%;
+  }
+}
+
+
+/* ======================== */
+/* Stepper Header Scroll    */
+/* ======================== */
+@media (max-width: 1024px) {
+  ::ng-deep .mat-horizontal-stepper-header-container {
+    padding: 2px 0 0 0;
+  }
+  
+  ::ng-deep .mat-step-header {
+    padding: 0 12px;
+  }
+}

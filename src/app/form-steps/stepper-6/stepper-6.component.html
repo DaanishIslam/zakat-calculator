@@ -1,0 +1,67 @@
+<!-- src\app\form-steps\stepper-6\stepper-6.component.html -->
+<div class="step-content">
+    <div class="section-header">Rain Water Dependent Produce</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Enter total value</mat-label>
+        <input matInput type="number" placeholder="Enter Value" [(ngModel)]="formData.agriRainValue"
+          name="agriRainValue"  (focus)="openAgriculturePanel()">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field select-field">
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="formData.agriRainCurrency" name="agriRainCurrency">
+          @for (code of currencies; track code) {
+            <mat-option [value]="code">{{ code }}</mat-option>
+          } @empty {
+            <mat-option disabled>No currencies available</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="section-header">Artificial Irrigation Produce</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Enter Total Amount</mat-label>
+        <input matInput type="number" placeholder="Enter Value" [(ngModel)]="formData.agriIrrigationValue"
+          name="agriIrrigationValue"  (focus)="openAgriculturePanel()">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field select-field">
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="formData.agriIrrigationCurrency" name="agriIrrigationCurrency">
+          @for (code of currencies; track code) {
+            <mat-option [value]="code">{{ code }}</mat-option>
+          } @empty {
+            <mat-option disabled>No currencies available</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="section-header">Hybrid Agriculture (Mixed)</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Enter Total Estimate</mat-label>
+        <input matInput type="number" placeholder="Enter Value" [(ngModel)]="formData.agriHybridValue"
+          name="agriHybridValue"  (focus)="openAgriculturePanel()">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field select-field">
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="formData.agriHybridCurrency" name="agriHybridCurrency">
+          @for (code of currencies; track code) {
+            <mat-option [value]="code">{{ code }}</mat-option>
+          } @empty {
+            <mat-option disabled>No currencies available</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="button-row">
+        <button mat-raised-button color="primary" class="back-button" (click)="previousStep()">Back</button>
+        <button mat-raised-button color="primary" class="next-button" (click)="nextStep()">Next</button>
+      </div>
+  </div>

@@ -1,0 +1,64 @@
+<!-- src\app\form-steps\stepper-1\stepper-1.component.html -->
+
+<div class="step-content">
+  <div class="section-header">Gold Info</div>
+  <div class="gold-grid">
+    <!-- Gold: 24K -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>24K Gold items</mat-label>
+      <input matInput type="number" placeholder="Enter Weight" [(ngModel)]="formData.gold24K" name="gold24K"
+        (focus)="openGoldPanel()">
+      <span matSuffix>grams</span>
+    </mat-form-field>
+
+    <!-- Gold: 22K -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>22K Gold items</mat-label>
+      <input matInput type="number" placeholder="Enter Weight" [(ngModel)]="formData.gold22K" name="gold22K"
+        (focus)="openGoldPanel()">
+      <span matSuffix>grams</span>
+    </mat-form-field>
+
+    <!-- Gold: 18K -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>18K Gold items</mat-label>
+      <input matInput type="number" placeholder="Enter Weight" [(ngModel)]="formData.gold18K" name="gold18K"
+        (focus)="openGoldPanel()">
+      <span matSuffix>grams</span>
+    </mat-form-field>
+
+    <!-- Miscellaneous Gold -->
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Misc Gold items</mat-label>
+      <input matInput type="number" placeholder="Enter Weight" [(ngModel)]="formData.miscGold" name="miscGold"
+        (focus)="openGoldPanel()">
+      <span matSuffix>grams</span>
+    </mat-form-field>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="section-header">Silver Info</div>
+  <div class="form-row">
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Sterling Silver</mat-label>
+      <input matInput type="number" placeholder="Enter Weight" [(ngModel)]="formData.silver" name="silver"
+        (focus)="openSilverPanel()">
+      <span matSuffix>grams</span>
+    </mat-form-field>
+  </div>
+  <mat-divider></mat-divider>
+  <!--   
+    <div class="section-header">Precious Stones & Diamond</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>*Precious Stones and Diamond</mat-label>
+        <input matInput type="number" placeholder="Enter Weight" 
+               [(ngModel)]="formData.preciousStones" name="preciousStones" (focus)="openStonePanel()">
+        <span matSuffix>carats</span>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider> -->
+  <div class="button-row">
+    <button mat-raised-button color="primary" class="next-button" (click)="nextStep()">Next</button>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<!-- src\app\form-steps\stepper-2\stepper-2.component.html -->
+<div class="step-content">
+    <div class="section-header">Cash In Hand</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Enter Cash Value</mat-label>
+        <input matInput type="number" placeholder="Enter Value" [(ngModel)]="this.formData.cashInHand"
+          name="cashInHand"
+          (focus)="openCashAndBankPanel()">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field select-field">
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="formData.cashCurrency" name="cashCurrency">
+          @for (code of currencies; track code) {
+            <mat-option [value]="code">{{ code }}</mat-option>
+          } @empty {
+            <mat-option disabled>No currencies available</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="section-header">Bank Balance</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Enter Balance Amount</mat-label>
+        <input matInput type="number" placeholder="Enter Value" [(ngModel)]="formData.bankBalance"
+          name="bankBalance" (focus)="openCashAndBankPanel()">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field select-field">
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="formData.bankCurrency" name="bankCurrency">
+          @for (code of currencies; track code) {
+            <mat-option [value]="code">{{ code }}</mat-option>
+          } @empty {
+            <mat-option disabled>No currencies available</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="section-header">Loans Received</div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Enter Loan Amount</mat-label>
+        <input matInput type="number" placeholder="Enter Value" [(ngModel)]="formData.loansReceived"
+          name="loansReceived" (focus)="openLoansAndInvestmentPanel()">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field select-field">
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="formData.loanCurrency" name="loanCurrency">
+          @for (code of currencies; track code) {
+            <mat-option [value]="code">{{ code }}</mat-option>
+          } @empty {
+            <mat-option disabled>No currencies available</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="button-row">
+      <button mat-raised-button color="primary" class="back-button" (click)="previousStep()">Back</button>
+      <button mat-raised-button color="primary" class="next-button" (click)="nextStep()">Next</button>
+    </div>
+    
+  </div>

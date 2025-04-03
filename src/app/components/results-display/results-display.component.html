@@ -1,0 +1,68 @@
+<!-- src\app\components\results-display\results-display.component.html -->
+<div class="results-container">
+  <h1 class="results-title">Zakat Calculation Results</h1>
+
+  <!-- Metal Rates Section -->
+  <section class="rates-section glass-card">
+    <h2>Metal Rates</h2>
+    <div class="result-item gold-rate">
+      <span class="label">Gold (24K):</span>
+      <span class="value">{{ goldRate?.price_gram_24k | number:'1.2-2' }} {{ defaultCurrency }}</span>
+    </div>
+    <div class="result-item gold-rate">
+      <span class="label">Gold (22K):</span>
+      <span class="value">{{ goldRate?.price_gram_22k | number:'1.2-2' }} {{ defaultCurrency }}</span>
+    </div>
+    <div class="result-item gold-rate">
+      <span class="label">Gold (18K):</span>
+      <span class="value">{{ goldRate?.price_gram_18k | number:'1.2-2' }} {{ defaultCurrency }}</span>
+    </div>
+    <div class="result-item silver-rate">
+      <span class="label">Silver (24K):</span>
+      <span class="value">{{ silverRate?.price_gram_24k | number:'1.2-2' }} {{ defaultCurrency }}</span>
+    </div>
+  </section>
+
+  <!-- Exchange Rates Section -->
+  <section class="exchange-section glass-card" *ngIf="exchangeRates && objectKeys(exchangeRates).length > 0">
+    <h2>Exchange Rates</h2>
+    <div class="result-item" *ngFor="let key of objectKeys(exchangeRates)">
+      <span class="label">{{ key }} → {{ defaultCurrency }}:</span>
+      <span class="value">{{ exchangeRates[key] | number:'1.2-2' }}</span>
+    </div>
+  </section>
+
+  <!-- Financial Summary Section -->
+  <section class="financial-section glass-card">
+    <h2>Financial Summary</h2>
+    <div class="result-item asset">
+      <span class="label">Total Assets:</span>
+      <span class="value">{{ totalAssets | number:'1.2-2' }} {{ defaultCurrency }}</span>
+    </div>
+    <div class="result-item liability">
+      <span class="label">Total Liabilities:</span>
+      <span class="value">{{ totalLiabilities | number:'1.2-2' }} {{ defaultCurrency }}</span>
+    </div>
+    <div class="result-item net-asset">
+      <span class="label">Net Assets:</span>
+      <span class="value">{{ netAssets | number:'1.2-2' }} {{ defaultCurrency }}</span>
+    </div>
+    <div class="result-item nisab">
+      <span class="label">Nisab Value:</span>
+      <span class="value">{{ nisabValue | number:'1.2-2' }} {{ defaultCurrency }}</span>
+    </div>
+  </section>
+
+  <!-- Zakat Calculation Section -->
+  <section class="zakat-section glass-card"
+    [ngClass]="{'eligible': netAssets >= nisabValue, 'not-eligible': netAssets < nisabValue}">
+    <h2>Zakat Obligation</h2>
+    <div class="result-item zakat-due">
+      <span class="label">Zakat Due:</span>
+      <span class="value">{{ zakat | number:'1.2-2' }} {{ defaultCurrency }}</span>
+    </div>
+    <div class="eligibility-message">
+      {{ netAssets >= nisabValue ? 'You are eligible to pay Zakat' : 'You are not eligible to pay Zakat' }}
+    </div>
+  </section>
+</div>

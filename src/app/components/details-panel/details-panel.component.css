@@ -1,0 +1,101 @@
+/* src\app\components\details-panel\details-panel.component.css */
+
+/* Main container */
+.details-container {
+    height: 100%;
+    max-height: 70dvh;
+    display: flex;
+    flex-direction: column;
+    margin: 2% 0 0 0;
+  }
+  
+  /* Scrollable content area */
+  .scrollable-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 0;
+    scroll-behavior: smooth; /* Ensures smooth scrolling */
+    position: relative; /* Needed for proper offset calculations */
+  }
+  
+  /* Custom scrollbar for the accordion container */
+  .scrollable-content::-webkit-scrollbar {
+    width: 6px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .scrollable-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 100, 0, 0.3);
+    border-radius: 3px;
+  }
+  
+  .scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 100, 0, 0.5);
+  }
+  
+  /* Accordion styling */
+  .output-accordion.mat-accordion {
+    background: transparent;
+    padding: 0 16px;
+  }
+  
+  .output-accordion .mat-expansion-panel {
+    background: rgba(29, 110, 20, 0.1);
+    color: #6c6969ce;
+    margin: 8px 0;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .output-accordion .mat-expansion-panel-header {
+    background: rgba(149, 253, 205, 0.2);
+    height: 64px;
+    padding: 0 24px;
+  }
+  
+  .output-accordion .mat-expansion-panel-header.mat-expanded {
+    background: rgba(0, 100, 0, 0.3);
+  }
+  
+  .output-accordion .mat-expansion-panel-header:hover:not([aria-disabled='true']) {
+    background: rgba(255, 255, 255, 0.372);
+  }
+  
+  .output-accordion .mat-panel-title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .output-accordion .mat-expansion-panel-content {
+    background: transparent;
+    color: #424242;
+  }
+  
+  .output-accordion .mat-expansion-panel-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 16px 24px;
+  }
+
+  
+/* ======================== */
+/* details-panel.component.css */
+/* ======================== */
+@media (max-width: 1024px) {
+  .output-accordion .mat-expansion-panel-header {
+    height: 56px;
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .output-accordion .mat-panel-title {
+    font-size: 14px;
+  }
+  
+  .output-accordion p {
+    font-size: 14px;
+    margin: 12px 16px;
+  }
+}

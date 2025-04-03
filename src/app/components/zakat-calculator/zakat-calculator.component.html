@@ -1,0 +1,47 @@
+<!-- src/app/zakat-calculator/zakat-calculator.component.html -->
+<div class="zakat-container">
+  <div class="form-container">
+    <mat-horizontal-stepper class="custom-stepper" linear #stepper>
+      <mat-step class="custom-step">
+        <ng-template matStepLabel>Valuable Metals</ng-template>
+        <app-stepper-1 [stepper]="stepper"></app-stepper-1>
+      </mat-step>
+      <mat-step class="custom-step">
+        <ng-template matStepLabel>Currency Valuation</ng-template>
+        <app-stepper-2 [stepper]="stepper"></app-stepper-2>
+      </mat-step>
+      <mat-step class="custom-step">
+        <ng-template matStepLabel>Investment Evaluations</ng-template>
+        <app-stepper-3 [stepper]="stepper"></app-stepper-3>
+      </mat-step>
+      <mat-step class="custom-step">
+        <ng-template matStepLabel>Lands and Businesses</ng-template>
+        <app-stepper-4 [stepper]="stepper"></app-stepper-4>
+      </mat-step>
+      <mat-step class="custom-step">
+        <ng-template matStepLabel>Partnership Firms</ng-template>
+        <app-stepper-5 [stepper]="stepper"></app-stepper-5>
+      </mat-step>
+      <mat-step class="custom-step">
+        <ng-template matStepLabel>Agriculture Produce</ng-template>
+        <app-stepper-6 [stepper]="stepper"></app-stepper-6>
+      </mat-step>
+      <mat-step class="custom-step">
+        <ng-template matStepLabel>Animal Farming</ng-template>
+        <app-stepper-7 [stepper]="stepper"></app-stepper-7>
+      </mat-step>
+      <mat-step class="custom-step">
+        <ng-template matStepLabel>Liabilities</ng-template>
+        <app-stepper-8 [stepper]="stepper"></app-stepper-8>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+
+  <div class="output-container">
+    <div class="important-notes-header">
+      <h2>Important Notes About Zakat Calculation</h2>
+      <p>Please read these guidelines carefully before calculating your Zakat</p>
+    </div>
+    <app-details-panel></app-details-panel>
+  </div>
+</div>

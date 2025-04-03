@@ -1,0 +1,50 @@
+/* src/app/header/header.component.css */
+
+/* Style the toolbar */
+mat-toolbar {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    height: 64px;
+  }
+  
+  /* Home icon button */
+  .home-icon {
+    color: rgb(0, 0, 0);
+  }
+  
+  /* Logo */
+  .logo {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+  
+  /* Spacer to push navigation to the right */
+  .spacer {
+    flex-grow: 1;
+  }
+  
+  /* Navigation styles */
+  nav {
+    display: flex;
+    gap: 16px;
+  }
+  
+  nav a {
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  nav a.active {
+    border-bottom: 2px solid #1976d2;
+  }
+  
+ .app-title {
+  flex: 2; /* Adjust as needed */
+  text-align: center;
+  margin-left: 69vh;       /* Remove default margins */
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+  

@@ -1,0 +1,22 @@
+<!-- src/app/header/header.component.html -->
+<mat-toolbar color="primary">
+  <button mat-icon-button aria-label="home" routerLink="/" class="home-icon">
+    <mat-icon>home</mat-icon>
+  </button>
+
+
+  @if (!isHome){
+  <ng-container>
+    <h1 class="app-title">Zakat Calculator</h1>
+  </ng-container>
+  }
+  <span class="spacer"></span>
+
+  <nav>
+    <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
+    @if (!isHome){
+    <a mat-button routerLink="/zakat-calculator" routerLinkActive="active">Zakat Calculator</a>
+    }
+    <a mat-button routerLink="/about" routerLinkActive="active">About</a>
+  </nav>
+</mat-toolbar>

@@ -1,0 +1,140 @@
+/* src\app\components\results-display\results-display.component.css */
+
+/* Glassmorphism Container */
+.results-container {
+  background: rgba(254, 254, 254, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  /* min-width: 600px; */
+  max-width: 1100px;
+  margin: 2rem auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  color: #424242;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Section Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 1.0rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Title Styling */
+.results-title {
+  text-align: center;
+  color: rgba(0, 100, 0, 0.8);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Result Items */
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  gap: 0.5rem;
+}
+
+.label {
+  font-weight: 500;
+  color: #6c6969ce;
+  margin-right: 0.25rem; /* Reduce right margin on label */
+
+}
+
+.value {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-left: 0.25rem;
+}
+
+/* Color Variants */
+.gold-rate .value { color: #FFD700; }
+.silver-rate .value { color: #C0C0C0; }
+.asset .value { color: #2E7D32; }
+.liability .value { color: #C62828; }
+.net-asset .value { color: #1565C0; }
+.nisab .value { color: #6A1B9A; }
+
+/* Zakat Section States */
+.zakat-section.eligible {
+  background: rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(46, 125, 50, 0.3);
+}
+
+.zakat-section.not-eligible {
+  background: rgba(198, 40, 40, 0.1);
+  border: 1px solid rgba(198, 40, 40, 0.3);
+}
+
+.zakat-due .value {
+  font-size: 1.5rem;
+  color: #2E7D32;
+}
+
+.eligibility-message {
+  text-align: center;
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.eligibility-message.eligible {
+  background: rgba(46, 125, 50, 0.1);
+  color: #2E7D32;
+}
+
+.eligibility-message.not-eligible {
+  background: rgba(198, 40, 40, 0.1);
+  color: #C62828;
+}
+
+/* Add this to your existing CSS */
+.rates-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.rates-section h2 {
+  grid-column: 1 / -1; /* Make the heading span all columns */
+  margin-bottom: 1rem;
+}
+
+
+/* ======================== */
+/* results-display.component.css */
+/* ======================== */
+@media (max-width: 1024px) {
+  .rates-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .results-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .rates-section,
+  .results-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .glass-card {
+    padding: 1rem;
+  }
+}

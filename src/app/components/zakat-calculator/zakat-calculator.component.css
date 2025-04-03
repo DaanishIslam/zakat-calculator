@@ -1,0 +1,161 @@
+/* src\app\components\zakat-calculator\zakat-calculator.component.css */
+/* new styles */
+
+/* Basic Container Layout */
+.zakat-container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 1rem;
+  height: 100%;
+  min-height: 87vh;
+  background: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  overflow-y: hidden;
+}
+
+.form-container{
+  flex: 1;
+  border: 1px solid;
+  padding: 0.5rem;
+  height: 85dvh;
+  max-width: 800px;
+  min-width: 500px;
+  margin: 0 auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(254, 254, 254, 0.5);
+}
+
+.output-container {
+  flex: 1;
+  border: 1px solid rgba(255, 255, 255, 0.3);;
+  padding: 0.5rem;
+  height: 85dvh;
+  max-width: 800px;
+  min-width: 500px;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(254, 254, 254, 0.5);
+
+  display: flex;
+  flex-direction: column;
+} 
+
+.important-notes-header {
+  background: rgba(111, 162, 87, 0.6);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.important-notes-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.important-notes-header p {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+}
+
+.output-container {
+  overflow-y: none;
+}
+
+.custom-stepper {
+  border-radius: 12px;
+  background: none;
+  max-height: 85dvh;
+  height: 85dvh;
+
+}
+
+::ng-deep .mat-horizontal-stepper-header-container {
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  white-space: nowrap !important;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: auto;
+  background: none;
+  padding: 2px 2px 0 0 ;
+  border-radius: 8px;
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+
+}
+
+::ng-deep .mat-step-header {
+  flex: 0 0 auto;
+}
+
+::ng-deep .mat-step-header:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  height: fit-content;  
+  width: fit-content;
+  border-radius: 20px;
+}
+
+
+/* Global scrollbar styling */
+
+
+/* Form container specific */
+.form-container ::-webkit-scrollbar {
+  width: 6px;
+}
+
+.form-container ::-webkit-scrollbar-thumb {
+  background: rgba(76, 175, 80, 0.3);
+}
+
+/* Stepper content scroll */
+::ng-deep .mat-horizontal-content-container {
+  overflow-y: auto !important;
+  max-height: 75vh;
+  padding: 0 16px !important;
+  scrollbar-width: thin;
+}
+
+/* Stepper header scroll */
+::ng-deep .mat-horizontal-stepper-header-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+::ng-deep .mat-horizontal-stepper-header-container::-webkit-scrollbar-thumb {
+  background: rgba(111, 162, 87, 0.3);
+}
+
+
+.output-container::-webkit-scrollbar-track {
+  background: rgba(254, 254, 254, 0.1);
+}
+
+
+/* ======================== */
+/* zakat-calculator.component.css */
+/* ======================== */
+@media (max-width: 1024px) {
+  .zakat-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-container,
+  .output-container {
+    min-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-stepper {
+    padding: 0.5rem;
+  }
+  
+  ::ng-deep .mat-step-header {
+    padding: 0 8px;
+  }
+}

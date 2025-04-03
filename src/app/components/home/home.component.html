@@ -1,0 +1,62 @@
+<!-- src\app\components\home\home.component.html -->
+<div class="unified-bg">
+  <!-- Header Section -->
+  <!-- <header class="header">
+    <mat-toolbar class="toolbar">
+      <button mat-icon-button aria-label="home" routerLink="/home" class="home-icon"></button>
+      <ng-container *ngIf="!isHome">
+        <h1 class="app-title">Zakat Calculator</h1>
+      </ng-container>
+      <span class="spacer"></span>
+      <nav class="nav-links">
+        <a *ngIf="!isHome" mat-button routerLink="/home" routerLinkActive="active">Home</a>
+        <ng-container *ngIf="!isHome">
+          <a mat-button routerLink="/zakat-calculator" routerLinkActive="active">Zakat Calculator</a>
+        </ng-container>
+        <a mat-button routerLink="/about" routerLinkActive="active">About</a>
+      </nav>
+    </mat-toolbar>
+  </header> -->
+
+  <!-- Main Content Section -->
+  <main class="container">
+    <mat-card class="glass-card">
+      <section class="welcome">
+        <h1>Welcome to <span class="highlight">Zakat Calculator</span></h1>
+        <h5>Developed by <i>Daanish Islam</i></h5>
+      </section>
+
+      <section class="zakat-info">
+        <p>
+          "Zakat, the third pillar of Islam, mandates Muslims to donate 2.5% of their wealth annually
+          to help those in need, purifying assets and promoting social equity."
+        </p>
+        <p>
+          Use this calculator to ensure accurate calculations and fulfill your obligation with confidence.
+        </p>
+      </section>
+
+      <div class="currency-selection">
+        <p class="description">
+          Input all assets and liabilities relevant to you. Each input includes a currency option to
+          change from the default.
+        </p>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select Default Currency</mat-label>
+          <mat-select [(value)]="defaultCurrency">
+            @for (code of currencies; track code) {
+              <mat-option [value]="code">{{ code }}</mat-option>
+            } @empty {
+              <mat-option disabled>No currencies available</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="proceed()" [disabled]="!defaultCurrency">
+          Proceed to Calculator
+        </button>
+      </div>
+    </mat-card>
+  </main>
+</div>

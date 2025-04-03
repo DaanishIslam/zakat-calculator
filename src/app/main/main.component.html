@@ -1,0 +1,29 @@
+<!-- src\app\main\main.component.html -->
+<div class="unified-bg">
+  <!-- Embedded Header Section -->
+  <header class="header">
+    <mat-toolbar class="toolbar">
+      <button mat-icon-button aria-label="home" routerLink="/home" class="home-icon"></button>
+      @if (!isHome) {
+        <h1 class="app-title">Zakat Calculator</h1>
+      }
+      <span class="spacer"></span>
+      <nav class="nav-links">
+        @if (!isHome) {
+          <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
+        }
+        @if (!isHome && !isAbout) {
+          <a mat-button routerLink="/zakat-calculator" routerLinkActive="active">Zakat Calculator</a>
+        }
+        <a mat-button routerLink="/about" routerLinkActive="active">About</a>
+      </nav>
+    </mat-toolbar>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
+<footer>
+  <!-- Include footer content -->
+</footer>

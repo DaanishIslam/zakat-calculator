@@ -1,0 +1,171 @@
+<!-- src\app\components\details-panel\details-panel.component.html -->
+<div class="details-container">
+  <div  #scrollContainer  class="scrollable-content">
+    <mat-accordion class="output-accordion" [multi]="false">
+      <!-- Gold Panel -->
+      <mat-expansion-panel scrollHost #goldPanel="scrollHost" (opened)="scrollToPanel(goldPanel)"
+        [(expanded)]="goldPanelExpanded">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Zakat on Pure Gold and Gold Jewellery</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <p>
+            Calculate Zakat at 2.5% of current market value (as of 1st Ramadan).
+            Most scholars recommend using current market value rather than purchase price.
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <!-- Silver Panel -->
+      <mat-expansion-panel scrollHost #silverPanel="scrollHost" (opened)="scrollToPanel(silverPanel)"
+        [(expanded)]="silverPanelExpanded">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Zakat on Silver</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <p>
+            Pay Zakat at 2.5% on silver in any form (jewelry, utensils, decorations).
+            Use current market rates for valuation.
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <!-- Precious Stones Panel -->
+      <mat-expansion-panel scrollHost #stonePanel="scrollHost" (opened)="scrollToPanel(stonePanel)"
+        [(expanded)]="stonePanelExpanded">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Zakat on Precious Stones</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <p>
+            There's debate about including precious stones. If they hold value, they may be included in your wealth
+            calculation.
+            Consult a scholar for guidance as opinions vary.
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <!-- Cash and Bank Panel -->
+      <mat-expansion-panel scrollHost #cashandbankPanel="scrollHost" (opened)="scrollToPanel(cashandbankPanel)"
+        [(expanded)]="cashandbankExpanded">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Zakat on Cash and Bank Balances</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <p>
+            Pay 2.5% Zakat on all cash and bank balances (savings, current, FD accounts).
+            Ideally, the amount should be in your account for one lunar year.
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <!-- Loans and Investments Panel -->
+      <mat-expansion-panel scrollHost #loansandinvestmentPanel="scrollHost"
+        (opened)="scrollToPanel(loansandinvestmentPanel)" [(expanded)]="loansandinvestmentExpanded">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Zakat on Loans and Investments</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <p>
+            Include loans you've given in your Zakat calculation.
+            Deduct loans you owe from your total wealth.
+            Zakat applies to bonds, insurance premiums, and provident funds - consult a scholar about Sharia compliance.
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <!-- Land Property Panel -->
+      <mat-expansion-panel scrollHost #landpropertyPanel="scrollHost" (opened)="scrollToPanel(landpropertyPanel)"
+        [(expanded)]="landpropertyExpanded">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Zakat on Property</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <p>
+            No Zakat on personal residences or rental properties (only on rental income).
+            Zakat applies if you hold property for investment/sale.
+            If property use changes to business, include its value that year.
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <!-- Business Panel -->
+      <mat-expansion-panel scrollHost #businessPanel="scrollHost" (opened)="scrollToPanel(businessPanel)"
+        [(expanded)]="businessExpanded">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Zakat on Business</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <p>
+            Business owners pay Zakat on all stock (valued at cost price).
+            Include credit sales and deduct supplier debts.
+            No Zakat on buildings/machinery, only on finished goods.
+            Be honest in valuations as Zakat protects your wealth.
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <!-- Partnership Panel -->
+      <mat-expansion-panel scrollHost #partnershipfirmsPanel="scrollHost"
+        (opened)="scrollToPanel(partnershipfirmsPanel)" [(expanded)]="partnershipfirmsExpanded">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Zakat for Partnerships</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <p>
+            Partners can pay Zakat individually or through the business.
+            Calculate based on capital account plus estimated profit share.
+            Use last balance sheet figures as reference.
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <!-- Agriculture Panel -->
+      <mat-expansion-panel scrollHost #agriculturePanel="scrollHost" (opened)="scrollToPanel(agriculturePanel)"
+        [(expanded)]="agricultureExpanded">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Zakat on Agriculture</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <p>
+            Pay Zakat on harvest (no one-year requirement).
+            For multiple crops, pay Zakat for each harvest.
+            Rates vary: 10% (rainwater), 5% (irrigation), or 7.5% (mixed).
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <!-- Animals Panel -->
+      <mat-expansion-panel scrollHost #animalsPanel="scrollHost" (opened)="scrollToPanel(animalsPanel)"
+        [(expanded)]="animalsExpanded">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Zakat on Animals</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <p>
+            For grazing animals (goats, sheep, cows, camels):
+            Pay 1 animal per 40 owned (or equivalent value).
+            Consult local scholars for specific rulings.
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <!-- Liabilities Panel -->
+      <mat-expansion-panel scrollHost #liabilitiesPanel="scrollHost" (opened)="scrollToPanel(liabilitiesPanel)"
+        [(expanded)]="liabilitiesExpanded">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Deducting Liabilities</mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <p>
+            Deduct:
+            - Taxes due
+            - Loans for Zakatable assets
+            Don't deduct loans for personal items (houses, cars).
+            <strong>Important: Avoid interest (riba) completely as it's prohibited in Islam.</strong>
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
