@@ -1,14 +1,16 @@
 <!-- src\app\components\gold-rate\gold-rate.component.html -->
+
+
+
 <h2>Gold Rate Chart</h2>
-@if (!errorOccured){
-<div>
-    <h2>Current Gold Rate</h2>
-    <pre>
-            {{goldRate | json}}
-        </pre>
-</div>
-}@else{
-<div class="error">
-    <p>Error: Unable to fetch gold rate. Please try again later.</p>
-</div>
-}
+<ng-container *ngIf="!errorOccured; else errorTpl">
+  <div>
+    <h3>Current Gold Rate</h3>
+    <pre>{{ goldRate | json }}</pre>
+  </div>
+</ng-container>
+<ng-template #errorTpl>
+  <div class="error">
+    <p>Error: {{ errorMessage }}</p>
+  </div>
+</ng-template>

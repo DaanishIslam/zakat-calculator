@@ -15,7 +15,8 @@ export class ResultsDisplayComponent {
   silverRate: any;
   exchangeRates: { [currency: string]: number } = {};
   defaultCurrency: string = '';
-  
+  goldPricePerGram = 0;
+  silverPricePerGram = 0;
   
   totalAssets: number = 0;
   totalLiabilities: number = 0;
@@ -39,6 +40,10 @@ export class ResultsDisplayComponent {
     this.defaultCurrency = this.formDataService.defaultCurrency;
     this.goldRate = this.goldService.goldRateData;
     this.silverRate = this.goldService.silverRateData;
+
+    // get second api:
+    this.goldPricePerGram = this.goldService.goldPricePerGram;
+    this.silverPricePerGram = this.goldService.silverPricePerGram;
 
     this.totalAssets = this.calcService.getTotalAssets();
     this.totalLiabilities = this.calcService.getTotalLiabilities();

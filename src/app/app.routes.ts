@@ -27,6 +27,7 @@ export const routes: Routes = [
       // Add additional child routes here
       { path: "results", component: ResultsDisplayComponent },
       { path: "about", component: AboutComponent },
+      { path: "gold-rate", component: GoldRateComponent},
     ],
   },
 ];

@@ -1,53 +1,49 @@
-// src\app\components\gold-rate\gold-rate.component.ts
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
-import { Component, OnInit } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { catchError } from "rxjs/operators";
-import { of } from "rxjs";
-import { RouterModule } from "@angular/router";
-
-// import gold service and interface file:
-import { GoldService } from "../../api/gold.service";
-import { GoldRate } from "../../interfaces/gold-rate.interface";
+// Import GoldService and GoldRate interface
+import { GoldService } from '../../api/gold.service';
+import { GoldRate } from '../../interfaces/gold-rate.interface';
 
 @Component({
-  selector: "app-gold-rate",
-  imports: [CommonModule, RouterModule],
-  templateUrl: "./gold-rate.component.html",
-  styleUrl: "./gold-rate.component.css",
+  selector: 'app-gold-rate',
   standalone: true,
+  imports: [CommonModule, RouterModule],
+  templateUrl: './gold-rate.component.html',
+  styleUrls: ['./gold-rate.component.css']
 })
 export class GoldRateComponent implements OnInit {
-  // get gold rate variable:
   goldRate: GoldRate | null = null;
   errorOccured = false;
+  errorMessage: string | null = null;
 
   constructor(private goldService: GoldService) {}
 
   ngOnInit(): void {
     this.fetchGoldRate();
-    // alert(`gold rate fetch Successfully`);
-    
   }
 
   fetchGoldRate(): void {
-    this.goldService
-      .getGoldRate()
-      .pipe(
-        catchError((error) => {
-          console.error("Error Fetching Gold Rate", error);
+    this.goldService.getGoldRate().pipe(
+      tap(data => {
+        console.log('Fetched Gold Data:', data);
+        if (!data) {
+          // If data is null, mark error and show message from service or a default message
           this.errorOccured = true;
-          return of(null);
-        })
-      )
-      .subscribe((goldData) => {
-        if (goldData) {
-          this.goldRate = goldData;
-        } else {
-          this.errorOccured = true;
+          this.errorMessage = this.goldService.errorMessage || "No data available. The service may be warming up.";
         }
-        
-      });
+      }),
+      catchError(error => {
+        console.error('Error fetching gold rate:', error);
+        this.errorOccured = true;
+        this.errorMessage = "Error fetching gold rate: " + error.message;
+        return of(null);
+      })
+    ).subscribe((data: GoldRate | null) => {
+      this.goldRate = data;
+    });
   }
-
 }
