@@ -198,7 +198,6 @@ export class CalculationsService {
         0.075 * // 7.5% rate
         this.convertToDefault(1, formData.agriHybridCurrency);
     }
-
     // Livestock (assuming animalAmount is in SAR)
     total += this.convertToDefault(
       formData.animalPrice,
@@ -242,7 +241,7 @@ export class CalculationsService {
 
     return total;
   }
-
+ 
   private convertToDefault(amount: number | null, currency: string): number {
     if (!amount || !currency) return 0; // Return 0 if amount or currency is missing
 

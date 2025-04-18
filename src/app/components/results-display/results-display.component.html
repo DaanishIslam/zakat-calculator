@@ -28,7 +28,7 @@
     <h2>Exchange Rates</h2>
     <div class="result-item" *ngFor="let key of objectKeys(exchangeRates)">
       <span class="label">{{ key }} → {{ defaultCurrency }}:</span>
-      <span class="value">{{ exchangeRates[key] | number:'1.2-2' }}</span>
+      <span class="value">{{ exchangeRates[key] | number:'1.2-2' }} {{ defaultCurrency }}</span>
     </div>
   </section>
 

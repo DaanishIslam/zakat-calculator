@@ -55,18 +55,22 @@ export class GoldService {
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
+import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { environment } from "../../environments/environment";
 import { GoldRate } from "../interfaces/gold-rate.interface";
+import { FormDataService } from "./form-data.service";
+import { CurrencyService } from "./currency.service";
 
 @Injectable({
   providedIn: "root",
 })
+
+/*
 export class GoldService {
   private baseUrl = environment.apiurls.goldBaseUrl;
   private apiKey = environment.apikeys.goldapiKey;
   private freeGoldPriceUrl = environment.apiurls.freeGoldPriceBaseUrl;
-  private freeGoldPriceApiKey = "tryfree";
+  private freeGoldPriceApiKey = "tryfree"; //environment.apikeys.freeGoldPriceApiKey; 
 
   public goldRateData: GoldRate | null = null;
   public silverRateData: GoldRate | null = null;
@@ -187,6 +191,175 @@ export class GoldService {
       date1.getFullYear() === date2.getFullYear() &&
       date1.getMonth() === date2.getMonth() &&
       date1.getDate() === date2.getDate()
+    );
+  }
+}*/
+export class GoldService {
+  private baseUrl = environment.apiurls.goldBaseUrl;
+  private apiKey = environment.apikeys.goldapiKey;
+  private freeGoldPriceUrl = environment.apiurls.freeGoldPriceBaseUrl;
+  private freeGoldPriceApiKey = "tryfree";
+
+  public goldRateData: GoldRate | null = null;
+  public silverRateData: GoldRate | null = null;
+  public errorMessage: string | null = null; // ← declare it here
+
+  private headers = new HttpHeaders({
+    "x-access-token": this.apiKey,
+    "Content-Type": "application/json",
+  });
+
+  constructor(
+    private http: HttpClient,
+    private formDataService: FormDataService,
+    private currencyService: CurrencyService
+  ) {}
+
+  /** symbol = "XAU" or "XAG", currency e.g. "SAR" */
+  getGoldRate(
+    symbol: "XAU" | "XAG" = "XAU",
+    currency: string = "SAR"
+  ): Observable<GoldRate | null> {
+    const cacheKey = `goldRateData_${symbol}_${currency}`;
+    const cachedDataStr = localStorage.getItem(cacheKey);
+    const today = new Date();
+
+    if (cachedDataStr) {
+      try {
+        const { timestamp, data } = JSON.parse(cachedDataStr);
+        if (this.isSameDay(new Date(timestamp * 1000), today)) {
+          // use cached
+          if (symbol === "XAU") this.goldRateData = data;
+          else this.silverRateData = data;
+          return of(data);
+        }
+      } catch {
+        /* swallow parse errors */
+      }
+    }
+
+    const primaryUrl = `${this.baseUrl}/${symbol}/${currency}`;
+    return this.http.get<GoldRate>(primaryUrl, { headers: this.headers }).pipe(
+      tap((data) => this.cacheGoldRate(symbol, data, cacheKey)),
+      catchError((err) => {
+        console.error("Primary API failed:", err);
+        this.errorMessage = "Primary API failed, trying backup API.";
+        // pass symbol & currency down so backup knows which metal to set
+        return this.fetchFromFreeGoldPrice(symbol).pipe(
+          // coerce to GoldRate|null
+          map((backup) => backup as GoldRate | null)
+        );
+      })
+    );
+  }
+
+  /**
+   * Backup fetch; returns an object shaped like GoldRate but
+   * only with the per‑gram Ask price injected.
+   */
+  // Modified fetchFromFreeGoldPrice method
+  private fetchFromFreeGoldPrice(
+    symbol: "XAU" | "XAG"
+  ): Observable<Partial<GoldRate> | null> {
+    const url = `${this.freeGoldPriceUrl}?key=${this.freeGoldPriceApiKey}&action=GSJ`;
+    return this.http.get<any>(url).pipe(
+      switchMap((response) => {
+        if (!response?.GSJ) throw new Error("Invalid backup response");
+  
+        const defaultCurrency = this.formDataService.defaultCurrency || "USD";
+        const unit = response.GSJ.unit;
+        let rawGoldOunce = response.GSJ.Gold.USD.Ask;
+        let rawSilverOunce = response.GSJ.Silver.USD.Ask;
+  
+        let goldPerGram = unit === "ounce" ? rawGoldOunce / 31.1034768 : rawGoldOunce;
+        let silverPerGram = unit === "ounce" ? rawSilverOunce / 31.1034768 : rawSilverOunce;
+  
+        if (defaultCurrency !== "USD") {
+          const conversionKey = `USD${defaultCurrency}`;
+          const storedRate = this.currencyService.storedConversions[conversionKey];
+  
+          // If rate exists, use it immediately
+          if (storedRate) {
+            goldPerGram *= storedRate;
+            silverPerGram *= storedRate;
+            return of({ goldPerGram, silverPerGram, defaultCurrency, symbol, response });
+          }
+  
+          // If rate doesn't exist, fetch it from exchange API
+          return this.currencyService.getConversionRate('USD', defaultCurrency).pipe(
+            switchMap(exchangeData => {
+              const rate = exchangeData.conversion_rate;
+              this.currencyService.storeConversionRate(conversionKey, rate);
+              
+              goldPerGram *= rate;
+              silverPerGram *= rate;
+              
+              return of({ goldPerGram, silverPerGram, defaultCurrency, symbol, response });
+            }),
+            catchError(err => {
+              console.error("Currency conversion failed, using USD:", err);
+              return of({ goldPerGram, silverPerGram, defaultCurrency: "USD", symbol, response });
+            })
+          );
+        }
+  
+        return of({ goldPerGram, silverPerGram, defaultCurrency, symbol, response });
+      }),
+      map(({ goldPerGram, silverPerGram, defaultCurrency, symbol, response }) => {
+        const fallback: Partial<GoldRate> = {
+          timestamp: Date.now(),
+          metal: symbol,
+          currency: defaultCurrency,
+          exchange: "freegoldprice.org",
+          symbol: symbol === "XAU" ? "GOLD" : "SILVER",
+          price_gram_24k: goldPerGram,
+          price_gram_22k: goldPerGram * (22 / 24),
+          price_gram_18k: goldPerGram * (18 / 24),
+          ask: goldPerGram,
+          bid: goldPerGram,
+          price: goldPerGram,
+        };
+  
+        if (symbol === "XAU") {
+          this.goldRateData = fallback as GoldRate;
+        } else {
+          this.silverRateData = {
+            ...fallback,
+            price_gram_24k: silverPerGram,
+            ask: silverPerGram,
+            bid: silverPerGram,
+            price: silverPerGram,
+          } as GoldRate;
+        }
+  
+        return fallback;
+      }),
+      catchError((err) => {
+        console.error("Backup API failed:", err);
+        this.errorMessage = "Both primary and backup API calls failed.";
+        return of(null);
+      })
+    );
+  }
+
+  private cacheGoldRate(
+    symbol: "XAU" | "XAG",
+    data: GoldRate,
+    cacheKey: string
+  ) {
+    localStorage.setItem(
+      cacheKey,
+      JSON.stringify({ timestamp: Math.floor(Date.now() / 1000), data })
+    );
+    if (symbol === "XAU") this.goldRateData = data;
+    else this.silverRateData = data;
+  }
+
+  private isSameDay(d1: Date, d2: Date): boolean {
+    return (
+      d1.getFullYear() === d2.getFullYear() &&
+      d1.getMonth() === d2.getMonth() &&
+      d1.getDate() === d2.getDate()
     );
   }
 }

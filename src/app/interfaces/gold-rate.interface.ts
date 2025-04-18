@@ -18,6 +18,10 @@ export interface GoldRate {
     price_gram_16k: number;
     price_gram_14k: number;
     price_gram_10k: number;
+  }
+
+  /**
+   *  why did we add here!
     creditSuppliers: number;
     creditCurrency: string;
     badDebts: number;
@@ -30,5 +34,5 @@ export interface GoldRate {
     bankLoanCurrency: string;
     pendingTaxes: number;
     taxCurrency: string;
-  }
+   */
   
